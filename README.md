@@ -4,7 +4,7 @@
 * Database: MySQL
 
 ## Live Demo
-* <a href="#">Demo</a>
+* <a href="http://13.235.239.65/" _target="blank">Demo</a>
 
 ### Admin Login
 * Email: admin@paypay.com
