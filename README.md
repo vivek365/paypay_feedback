@@ -6,6 +6,14 @@
 ## Live Demo
 * <a href="#">Demo</a>
 
+### Admin Login
+* Email: admin@paypay.com
+* Password: admin
+
+### Employee Login
+* Email: vivek@paypay.com -- It can be any employee's email which is created from admin login.
+* Password: 123456
+
 ## Steps to Run
 * Clone this repo.
 * Run npm install and npm start on client folder
