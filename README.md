@@ -17,6 +17,7 @@
 ## Steps to Run
 * Clone this repo.
 * Run npm install and npm start on client folder
+* Run db.sql file in mysql.
 * Run mvn clean and mvn install on rest folder
 * Run the jar created in rest/target folder
 * Go to http://localhost:4200 
