@@ -1,0 +1,11 @@
+<div id="id01" class="modal-body">
+  <span class="close" title="Close Modal" (click)="close(false)">&times;</span>
+  <div class="container">
+    <h1>{{header}}</h1>
+    <p>{{message}}</p>
+    <div class="clearfix">
+      <button type="button" class="cancelbtn" (click)="close(false)">Cancel</button>
+      <button type="button" class="deletebtn" (click)="close(true)">Ok</button>
+    </div>
+  </div>
+</div>

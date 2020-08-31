@@ -1,0 +1,101 @@
+<form [formGroup]="form">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Employee</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-row">
+      <div class="col-md-4">
+        <div class=" form-group">
+          <label class="required">Employee Id</label>
+          <input class="form-control" name="empId" placeholder="Employee Id" type="text" formControlName="empId"
+          (blur)="isAlreadyExist('empId')">
+          <div *ngIf="util.isFormInputInvalid(form.get('empId'))" class="form-error"></div>
+          <div *ngIf=" !isNotUsed.empId" class="form-error">Employee Id is already used</div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class=" form-group">
+          <label class="required">Employee Name</label>
+          <input class="form-control" name="name" placeholder="Name" type="text" formControlName="name">
+          <div *ngIf="util.isFormInputInvalid(form.get('name'))" class="form-error"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6">
+        <div class=" form-group">
+          <label class="required">Email</label>
+          <input class="form-control" name="email" placeholder="Email" type="email" formControlName="email"
+            (blur)="isAlreadyExist('email')">
+          <div *ngIf="util.isFormInputInvalid(form.get('email')) && form.get('email').errors.required"
+            class="form-error"></div>
+          <div *ngIf="form.get('email').errors?.pattern" class="form-error">Email is invalid</div>
+          <div *ngIf=" !isNotUsed.email" class="form-error">Email is already used</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" form-group">
+          <label class="required">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender">
+            <option value="" disabled>Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+          <div *ngIf="util.isFormInputInvalid(form.get('gender'))" class="form-error"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6">
+        <div class=" form-group">
+          <label class="required">Mobile No.</label>
+          <input class="form-control" name="mobile" placeholder="Mobile Number" type="text" formControlName="mobile">
+          <div *ngIf="util.isFormInputInvalid(form.get('mobile'))" class="form-error"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" form-group">
+          <label class="required">Type</label>
+          <select class="form-control" name="type" formControlName="type">
+            <option value="" disabled>Type</option>
+            <option>Backend Developer</option>
+            <option>Fronend Developer</option>
+            <option>Fullstack Developer</option>
+            <option>IOS Developer</option>
+            <option>Android Developer</option>
+          </select>
+          <div *ngIf="util.isFormInputInvalid(form.get('type'))" class="form-error"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6">
+        <div class=" form-group">
+          <label class="required">Date of Birth</label>
+          <input class="form-control" name="birthDate" placeholder="Date of Birth" type="text"
+            formControlName="birthDate" bsDatepicker [bsConfig]="util.datePickerConfig" [maxDate]="maxDate">
+          <div *ngIf="util.isFormInputInvalid(form.get('birthDate'))" class="form-error"></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class=" form-group">
+          <label class="required">Joining Date</label>
+          <input class="form-control" name="joiningDate" placeholder="Date of Joining" type="text"
+            formControlName="joiningDate" bsDatepicker [bsConfig]="util.datePickerConfig">
+          <div *ngIf="util.isFormInputInvalid(form.get('joiningDate'))" class="form-error"></div>
+        </div>
+      </div>
+    </div>
+    <div class=" form-group">
+      <label>Address</label>
+      <textarea class="form-control" formControlName="address" placeholder="Address"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="save()">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="modalRef.hide();" data-dismiss="modal">Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,84 @@
+@import "assets/base";
+
+.bs-datepicker-head, .bs-datepicker-body table td span.selected {
+    background-color: $primary !important;
+}
+
+ .bs-datepicker-body table td.week span {
+    color: $primary !important
+}
+.custom-today-class {
+    background-color: $secondary;
+}
+
+label {
+    margin-bottom: 0.1rem;
+}
+.form-group {
+    margin-bottom: 0.5rem
+}
+.form-control {
+    height: 2rem;
+    font-size: 0.8rem;
+}
+.modal-header {
+    padding: 0.5rem 1rem;
+}
+.c-pointer {
+    cursor: pointer;
+}
+.font-red, .form-error {
+    color: red;
+}
+
+label.required::after {
+    content: " *";
+    display: contents;
+    color: #f5594f;
+}
+.form-error:empty::after {
+    content: "Please fill the field.";
+    display: contents;
+    color: #f5594f;
+    
+}
+.form-error {
+    font-size: 12px
+}
+.primary-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #285384;
+}
+.secondary-text {
+    color: gray;
+    font-size: 13px;
+}
+// pop over css
+.popover-body {
+    height: 26rem;
+    width: 20em;
+    padding: 0px;
+
+    input {
+        width: 100%;
+    }
+    .popover-content {
+        padding: 10px;
+
+        ul {
+            overflow-y: auto;
+            height: 17rem;
+            padding-top: 1rem;
+        }
+    }
+    .popover-header {
+        text-align: center;
+    }
+    .popover-footer {
+        text-align: center;
+        button {
+            width: 90%; 
+        }
+    } 
+}

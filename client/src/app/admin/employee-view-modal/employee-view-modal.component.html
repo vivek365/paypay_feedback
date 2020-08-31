@@ -1,0 +1,84 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{name}} <rating [(ngModel)]="rate" [max]="max" [readonly]="true"></rating>
+  </h4>
+  <div class="btn-group-sm btn-group" *ngIf="!adminReview; else closeBtn">
+    <button class="btn btn-primary" (click)="openReviewModal({employee: {id: id}, reviewer: {id: userId}})">Add
+      Review</button>
+  </div>
+  <ng-template #closeBtn>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </ng-template>
+</div>
+<div class="modal-body">
+  <tabset [justified]="true">
+    <tab heading="Completed Review">
+      <div class="main-card mb-3 card">
+        <ul class="list-group list-group-flush" *ngIf="completedReview.length; else cnoData">
+          <li class="list-group-item" *ngFor="let r of completedReview">
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left mr-3"><img alt="" class="rounded-circle"
+                    src="./assets/images/avatars/{{r.reviewer.gender === 'Female' ? 'girl' : 'boy'}}.png" width="42">
+                </div>
+                <div class="widget-content-left">
+                  <ng-container *ngIf="r.reviewer.id === userId">
+                    <div class="widget-heading">You</div>
+                    <div class="widget-subheading">
+                      {{r.comment}}
+                      <i class="fa fa-edit c-pointer" (click)="openReviewModal(r)"></i>
+                    </div>
+                    <div class="widget-subheading">
+                      <i class="fa fa-calendar"></i> {{r.reviewDate | date: util.dateDisplayFormate}}
+                    </div>
+                  </ng-container>
+                  <ng-container *ngIf="r.reviewer.id !== userId">
+                    <div class="widget-heading">{{r.reviewer.name}}</div>
+                    <div class="widget-subheading">
+                      {{r.comment}}
+                    </div>
+                    <div class="widget-subheading">
+                      <i class="fa fa-calendar"></i> {{r.reviewDate | date: util.dateDisplayFormate}}
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="widget-content-right">
+                  <rating [(ngModel)]="r.reviewerRating" [max]="max" [readonly]="true"></rating>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ng-template #cnoData>
+          <img src="/assets/images/no_data.png" class="no-data" />
+        </ng-template>
+      </div>
+    </tab>
+    <tab heading="Pending Review">
+      <div class="main-card mb-3 card">
+        <ul class="list-group list-group-flush" *ngIf="pendingReview.length; else pnoData">
+          <li class="list-group-item" *ngFor="let r of pendingReview">
+            <div class="widget-content p-0">
+              <div class="widget-content-wrapper">
+                <div class="widget-content-left mr-3"><img alt="" class="rounded-circle"
+                    src="./assets/images/avatars/{{r.reviewer.gender === 'Female' ? 'girl' : 'boy'}}.png" width="42">
+                </div>
+                <div class="widget-content-left">
+                  <div class="widget-heading">{{r.reviewer.name}}</div>
+                </div>
+                <div class="widget-content-right btn-group-sm btn-group">
+                  <button class="btn btn-primary" (click)="unassign(r.id)">Unassign</button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ng-template #pnoData>
+          <img src="/assets/images/no_data.png" class="no-data" />
+        </ng-template>
+      </div>
+    </tab>
+  </tabset>
+
+</div>

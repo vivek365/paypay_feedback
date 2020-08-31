@@ -1,0 +1,26 @@
+<form [formGroup]="form">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      Review
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="required">Rating: </label>
+      <rating formControlName="reviewerRating" [max]="5"></rating>
+      <div *ngIf="util.isFormInputInvalid(form.get('reviewerRating'))" class="form-error"></div>
+    </div>
+    <div class="form-group">
+      <label class="required">Comment</label>
+      <textarea class="form-control" rows="5" formControlName="comment" placeholder="Comment"></textarea>
+      <div *ngIf="util.isFormInputInvalid(form.get('comment'))" class="form-error"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary mr-2" (click)="save()">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="modalRef.hide();" data-dismiss="modal">Cancel</button>
+  </div>
+</form>

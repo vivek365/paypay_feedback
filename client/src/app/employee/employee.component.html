@@ -1,0 +1,57 @@
+<div class="main-card mb-3 card">
+  <div class="card-header">
+    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+      Reviews
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">Employee Id</th>
+          <th class="text-center">Gender</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Review</th>
+          <th class="text-center">Comment</th>
+          <th class="text-center">Review Date</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of review$ | async">
+          <td class="text-center" style="width: 80px;">{{r.employee.empId}}</td>
+          <td class="text-center" style="width: 80px;">
+            <img width="40" class="rounded-circle"
+              src="./assets/images/avatars/{{r.employee.gender === 'Female' ? 'girl' : 'boy'}}.png" alt="">
+          </td>
+          <td class="text-center">
+            <div class="primary-text">{{r.employee.name}}</div>
+            <div class="secondary-text">{{r.employee.type}}</div>
+          </td>
+          <td class="text-center">
+            <rating *ngIf="r.reviewerRating" [(ngModel)]="r.reviewerRating" [max]="5" [readonly]="true"></rating>
+          </td>
+          <td class="text-center" style="max-width: 10rem;">
+            <div *ngIf="r.comment" [tooltip]="r.comment" class="comment text-truncate">
+              {{r.comment}}
+            </div>
+          </td>
+          <td class="text-center">
+            <span class="pr-2 opacity-6">
+              <i class="fa fa-calendar"></i>
+            </span>
+            <span *ngIf="r.reviewDate">{{r.reviewDate | date: util.dateDisplayFormate}}</span>
+          </td>
+          <td class="text-center">
+            <div role="group" class="btn-group-sm btn-group">
+              <button class="btn-shadow btn btn-primary"
+                (click)="openReviewModal(r)">{{r.reviewerRating ? 'Edit Review' : 'Review'}}</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-block p-4 text-center card-footer">
+  </div>
+</div>
